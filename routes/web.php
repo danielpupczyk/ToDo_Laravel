@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tasks',[
+		'uses' => 'TasksController@index',
+		'as' => 'tasks.index'
+	]);
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
