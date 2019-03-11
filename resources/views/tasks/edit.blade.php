@@ -17,19 +17,18 @@
 						</ul>
 					@endif
 					
-					<!--{{ Form::open(array('url' => 'tasks', 'method' => 'post')) }}-->
-					{{ Form::open(array('route' => 'tasks.store', 'method' => 'post')) }}
+					{{ Form::model($task, array('route' => ['tasks.update',$task], 'method' => 'PUT')) }}
 						<div class="form-group">
 							{{Form::label('title', 'Title:')}}
-							{{Form::text('title', null,['class'=>'form-control'])}}
+							{{Form::text('title', $task->title,['class'=>'form-control'])}}
 						</div>
 						<div class="form-group">
 							{{Form::label('description', 'Description:')}}
-							{{Form::textarea('description', null,['class'=>'form-control'])}}
+							{{Form::textarea('description', $task->description,['class'=>'form-control'])}}
 						</div>
 						<div class="form-group">
 							{{Form::label('deadline', 'Deadline:')}}
-							<input value="2019-03-12T19:30" type="datetime-local" name="deadline" id="deadline" class="form-control">
+							<input value="{{$task->deadline}}" type="datetime-local" name="deadline" id="deadline" class="form-control">
 						</div>
 						<div class="text-center">
 							{{Form::submit('Submit!',$artibutes = ["class"=>"btn btn-primary"])}}

@@ -69,9 +69,9 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Task $task)
     {
-        //
+        return view('tasks.edit',compact('task'));
     }
 
     /**
@@ -81,9 +81,10 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TasksRequest $request, Task $task)
     {
-        //
+        $task->update($request->all());
+		return redirect()->route('tasks.index');
     }
 
     /**
@@ -92,8 +93,9 @@ class TasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Task $task)
     {
-        //
+        $task->delete();
+		return redirect()->route('tasks.index');
     }
 }

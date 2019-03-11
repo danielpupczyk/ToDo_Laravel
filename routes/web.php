@@ -28,6 +28,22 @@ Route::post('tasks',[
 		'uses' => 'TasksController@store',
 		'as' => 'tasks.store'
 	]);
+Route::get('tasks/{task}',[
+		'uses' => 'TasksController@show',
+		'as' => 'tasks.show'
+	]);
+Route::get('tasks/{task}/edit',[
+		'uses' => 'TasksController@edit',
+		'as' => 'tasks.edit'
+	]);
+Route::put('tasks/{task}',[
+		'uses' => 'TasksController@update',
+		'as' => 'tasks.update'
+	]);
+Route::delete('tasks/{task}',[
+		'uses' => 'TasksController@destroy',
+		'as' => 'tasks.delete'
+	]);
 
 Auth::routes();
 

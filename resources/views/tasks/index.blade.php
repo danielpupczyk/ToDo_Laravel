@@ -28,7 +28,21 @@
 							@endif
 								<td>{{$task->title}}</td>
 								<td>{{$task->description}}</td>
-								<td class="text-center"><button type="button" class="btn btn-info">More</button><button type="button" class="btn btn-primary ml-1">Edit</button><button type="button" class="btn btn-danger ml-1">Delete</button></td>
+								<td class="text-center">
+										{{ Form::model($task, ['route' => ['tasks.show',$task],'method' => 'GET']) }}
+											<input type="submit" value="More" class="btn btn-info ml-1 float-left">
+										{{ Form::close()}}
+										{{ Form::model($task, ['route' => ['tasks.edit',$task],'method' => 'GET']) }}
+											<input type="submit" value="Edit" class="btn btn-primary ml-1 float-left">
+										{{ Form::close()}}
+										<!--<button type="button" class="btn btn-info float-left">More</button>
+										<button type="button" class="btn btn-primary ml-1 float-left">Edit</button>-->
+										{{ Form::model($task, ['route' => ['tasks.delete',$task]]) }}
+											<input type="submit" value="Delete" class="btn btn-danger ml-1 float-left">
+											{{ method_field('delete') }}
+											{{ csrf_field() }}
+										{{ Form::close()}}
+								</td>
 							</tr>
 						@endforeach
 						</tbody>
