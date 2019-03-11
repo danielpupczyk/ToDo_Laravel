@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Task;
+use App\User;
+use App\Http\Requests\TasksRequest;
 
 class TasksController extends Controller
 {
@@ -18,10 +21,11 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = DB::table('tasks')
+        /*$tasks = DB::table('tasks')
                      ->select('*')
                      ->where('users_id', '=', Auth::user()->id)
-                     ->get();
+                     ->get();*/
+		$tasks = Task::where('users_id','=',Auth::user()->id)->paginate(12);
 		
         return view('tasks.index', compact('tasks'));
     }
@@ -33,7 +37,7 @@ class TasksController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -42,9 +46,10 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TasksRequest $request)
     {
-        //
+        Task::create([$request->all(),Auth::user()->id]);
+		return redirect()->route('tasks.index');
     }
 
     /**

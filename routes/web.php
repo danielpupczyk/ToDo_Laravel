@@ -11,13 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+		'uses' => 'TasksController@index',
+		'as' => 'tasks.index'
+	]);
 
 Route::get('tasks',[
 		'uses' => 'TasksController@index',
 		'as' => 'tasks.index'
+	]);
+Route::get('tasks/create',[
+		'uses' => 'TasksController@create',
+		'as' => 'tasks.create'
+	]);
+Route::post('tasks',[
+		'uses' => 'TasksController@store',
+		'as' => 'tasks.store'
 	]);
 
 Auth::routes();
