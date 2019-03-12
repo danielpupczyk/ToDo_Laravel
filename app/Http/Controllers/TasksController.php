@@ -25,7 +25,7 @@ class TasksController extends Controller
                      ->select('*')
                      ->where('users_id', '=', Auth::user()->id)
                      ->get();*/
-		$tasks = Task::where('users_id','=',Auth::user()->id)->paginate(12);
+		$tasks = Task::where('users_id','=',Auth::user()->id)->paginate(10);
 		
         return view('tasks.index', compact('tasks'));
     }
@@ -48,7 +48,7 @@ class TasksController extends Controller
      */
     public function store(TasksRequest $request)
     {
-        Task::create($request->all() + ['users_id' => Auth::user()->id]);
+        Task::create($request->all() + ['users_id' => Auth::user()->id,'status'=>'active']);
 		return redirect()->route('tasks.index');
     }
 
@@ -83,7 +83,14 @@ class TasksController extends Controller
      */
     public function update(TasksRequest $request, Task $task)
     {
-        $task->update($request->all());
+		if($request->status!=$task->status)
+			if($request->status=='done'){
+				$task->update($request->all() + ['done_at' => date('Y-m-d H:i:s')]);
+			}
+			else
+				$task->update($request->all() + ['done_at' => NULL]);
+		else 
+			$task->update($request->all());
 		return redirect()->route('tasks.index');
     }
 

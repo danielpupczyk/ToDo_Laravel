@@ -12,27 +12,27 @@
 					<table class="m-auto table table-striped text-center col-md-8">
 						<tbody>
 							<tr>
-								<td class="col-md-4">Title:</td>
+								<th scope="row" class="col-md-4">Title:</th>
 								<td class="col-md-8">{{$task->title}}</td>
 							</tr>
 							<tr>
-								<td class="col-md-4">Description:</td>
+								<th scope="row" class="col-md-4">Description:</th>
 								<td class="col-md-8">{{$task->description}}</td>
 							</tr>
 							<tr>
-								<td class="col-md-4">Added at:</td>
+								<th scope="row" class="col-md-4">Added at:</th>
 								<td class="col-md-8">{{$task->created_at}}</td>
 							</tr>
 							<tr>
-								<td class="col-md-4">Deadline:</td>
+								<th scope="row" class="col-md-4">Deadline:</th>
 								<td class="col-md-8">{{$task->deadline}}</td>
 							</tr>
 							<tr>
-								<td class="col-md-4">Last update:</td>
+								<th scope="row" class="col-md-4">Last update:</th>
 								<td class="col-md-8">{{$task->updated_at}}</td>
 							</tr>
 							<tr>
-								<td class="col-md-4">Done at:</td>
+								<th scope="row" class="col-md-4">Done at:</th>
 								<td class="col-md-8">@if($task->done_at==null)Not yet @else {{$task->done_at}} @endif</td>
 							</tr>
 						</tbody>

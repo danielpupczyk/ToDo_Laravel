@@ -5,7 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">
+					@if($user->first_name!=null)
+						Hello {{$user->first_name}}!
+					@else
+						Hello!
+					@endif
+				</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,8 +19,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in! Now you can manage your tasks by choose "My Tasks" from navbar.
+					
+					
+                    You are logged in as {{$user->email}}! Now you can manage your tasks by choose "My Tasks" from navbar.
                 </div>
             </div>
         </div>
