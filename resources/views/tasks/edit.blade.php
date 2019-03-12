@@ -19,7 +19,7 @@
 						</div>
 						<div class="form-group">
 							{{Form::label('status', 'Status:')}}
-							{{Form::select('status', array('active' => 'In Progress', 'done' => 'Done'), $task->status)}}
+							{{Form::select('status', array('active' => 'In Progress', 'done' => 'Done'), $task->status,['class'=>'form-control'])}}
 						</div>
 						<div class="form-group">
 							{{Form::label('deadline', 'Deadline:')}}
