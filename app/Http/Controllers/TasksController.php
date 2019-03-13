@@ -71,6 +71,8 @@ class TasksController extends Controller
      */
     public function edit(Task $task)
     {
+		if($task->users_id != Auth::user()->id)
+			return redirect()->route('tasks.index');
         return view('tasks.edit',compact('task'));
     }
 
@@ -83,6 +85,8 @@ class TasksController extends Controller
      */
     public function update(TasksRequest $request, Task $task)
     {
+		if($task->users_id != Auth::user()->id)
+			return redirect()->route('tasks.index');
 		if($request->status!=$task->status)
 			if($request->status=='done'){
 				$task->update($request->all() + ['done_at' => date('Y-m-d H:i:s')]);
