@@ -60,6 +60,8 @@ class TasksController extends Controller
      */
     public function show(Task $task)
     {
+		if($task->users_id != Auth::user()->id)
+			return redirect()->route('tasks.index');
         return view('tasks.show',compact('task'));
     }
 
